@@ -1,4 +1,5 @@
 # Storage Gateway
+[![serverless](https://img.shields.io/badge/serverless-3.19.0-FD5750?style=flat-square&logo=serverless)](https://www.serverless.com/)
 [![typescript](https://img.shields.io/badge/typescript-4.7.4-3178c6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![MIT License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://github.com/DiegoVictor/storage-gateway/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)<br>
