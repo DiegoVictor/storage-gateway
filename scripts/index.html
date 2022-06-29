@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo</title>
+</head>
+<body>
+  <img src="https://ivlfolw71h.execute-api.us-east-1.amazonaws.com/dev/images/blown.gif" />
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const BASE_URL = 'https://ivlfolw71h.execute-api.us-east-1.amazonaws.com';
+
+    axios.get(`${BASE_URL}/dev/images/works.png`, {
+      responseType: 'blob',
+      headers: {
+        Accept: 'image/png'
+      }
+    }).then(response => {
+      const reader = new window.FileReader();
+      reader.readAsDataURL(response.data);
+
+      reader.onload = () => {
+        const image = new Image();
+        image.src = reader.result;
+        image.width = 300;
+        document.body.append(image);
+      }
+    });
+
+    const image = new Image();
+    image.src = `${BASE_URL}/dev/images/programming.jpg`;
+    document.body.append(image);
+  </script>
+</body>
+</html>
