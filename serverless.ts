@@ -39,6 +39,47 @@ const serverlessConfiguration: AWS = {
           BucketName: "${self:custom.bucketName}",
         },
       },
+      StorageGatewayBucketRole: {
+        Type: "AWS::IAM::Role",
+        DependsOn: ["StorageGatewayBucket"],
+        Properties: {
+          AssumeRolePolicyDocument: {
+            Version: "2012-10-17",
+            Statement: [
+              {
+                Effect: "Allow",
+                Principal: {
+                  Service: ["apigateway.amazonaws.com"],
+                },
+                Action: ["sts:AssumeRole"],
+              },
+            ],
+          },
+          Policies: [
+            {
+              PolicyName: "ReadBucket",
+              PolicyDocument: {
+                Version: "2012-10-17",
+                Statement: [
+                  {
+                    Effect: "Allow",
+                    Action: ["s3:Get*", "s3:List*"],
+                    Resource: {
+                      "Fn::Join": [
+                        "",
+                        [
+                          { "Fn::GetAtt": ["StorageGatewayBucket", "Arn"] },
+                          "/*",
+                        ],
+                      ],
+                    },
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
     },
   },
 };
