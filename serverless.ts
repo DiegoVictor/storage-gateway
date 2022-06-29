@@ -31,6 +31,16 @@ const serverlessConfiguration: AWS = {
       concurrency: 10,
     },
   },
+  resources: {
+    Resources: {
+      StorageGatewayBucket: {
+        Type: "AWS::S3::Bucket",
+        Properties: {
+          BucketName: "${self:custom.bucketName}",
+        },
+      },
+    },
+  },
 };
 
 module.exports = serverlessConfiguration;
