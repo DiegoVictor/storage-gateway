@@ -87,6 +87,30 @@ const serverlessConfiguration: AWS = {
           BinaryMediaTypes: ["image/jpeg", "image/png", "image/gif"],
         },
       },
+      StorageGatewayFolderProxyResource: {
+        Type: "AWS::ApiGateway::Resource",
+        Properties: {
+          ParentId: {
+            "Fn::GetAtt": ["StorageGatewayApi", "RootResourceId"],
+          },
+          PathPart: "{folder}",
+          RestApiId: {
+            Ref: "StorageGatewayApi",
+          },
+        },
+      },
+      StorageGatewayApiObjectProxyResource: {
+        Type: "AWS::ApiGateway::Resource",
+        Properties: {
+          ParentId: {
+            Ref: "StorageGatewayFolderProxyResource",
+          },
+          PathPart: "{object}",
+          RestApiId: {
+            Ref: "StorageGatewayApi",
+          },
+        },
+      },
     },
   },
 };
