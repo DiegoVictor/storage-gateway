@@ -19,6 +19,7 @@ const serverlessConfiguration: AWS = {
   },
   package: { individually: true },
   custom: {
+    bucketName: "storage-gateway-${sls:stage}-bucket",
     esbuild: {
       bundle: true,
       minify: false,
