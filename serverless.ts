@@ -80,6 +80,13 @@ const serverlessConfiguration: AWS = {
           ],
         },
       },
+      StorageGatewayApi: {
+        Type: "AWS::ApiGateway::RestApi",
+        Properties: {
+          Name: "StorageGatewayApi",
+          BinaryMediaTypes: ["image/jpeg", "image/png", "image/gif"],
+        },
+      },
     },
   },
 };
