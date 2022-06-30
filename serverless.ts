@@ -111,6 +111,72 @@ const serverlessConfiguration: AWS = {
           },
         },
       },
+      StorageGatewayApiObjectProxyMethod: {
+        Type: "AWS::ApiGateway::Method",
+        DependsOn: ["StorageGatewayBucketRole"],
+        Properties: {
+          AuthorizationType: "NONE",
+          ResourceId: {
+            Ref: "StorageGatewayApiObjectProxyResource",
+          },
+          RestApiId: {
+            Ref: "StorageGatewayApi",
+          },
+          HttpMethod: "GET",
+          RequestParameters: {
+            "method.request.path.folder": true,
+            "method.request.path.object": true,
+            "method.request.header.Accept": true,
+          },
+          MethodResponses: [
+            {
+              ResponseParameters: {
+                "method.response.header.Content-Type": true,
+                "method.response.header.Content-Length": true,
+                "method.response.header.Timestamp": true,
+                "method.response.header.Access-Control-Allow-Origin": true,
+                "method.response.header.Access-Control-Allow-Headers": true,
+                "method.response.header.Access-Control-Allow-Methods": true,
+              },
+              StatusCode: "200",
+            },
+          ],
+          Integration: {
+            Type: "AWS",
+            IntegrationHttpMethod: "GET",
+            Uri: "arn:aws:apigateway:${self:provider.region}:s3:path/{bucket}/{folder}/{object}",
+            Credentials: {
+              "Fn::GetAtt": ["StorageGatewayBucketRole", "Arn"],
+            },
+            RequestParameters: {
+              "integration.request.path.bucket": "'${self:custom.bucketName}'",
+              "integration.request.path.folder": "method.request.path.folder",
+              "integration.request.path.object": "method.request.path.object",
+              "integration.request.header.Accept":
+                "method.request.header.Accept",
+            },
+            IntegrationResponses: [
+              {
+                ContentHandling: "CONVERT_TO_BINARY",
+                ResponseParameters: {
+                  "method.response.header.Content-Type":
+                    "integration.response.header.Content-Type",
+                  "method.response.header.Content-Length":
+                    "integration.response.header.Content-Length",
+                  "method.response.header.Timestamp":
+                    "integration.response.header.Date",
+                  "method.response.header.Access-Control-Allow-Origin": "'*'",
+                  "method.response.header.Access-Control-Allow-Headers":
+                    "'Content-Type,Content-Length'",
+                  "method.response.header.Access-Control-Allow-Methods":
+                    "'GET,OPTIONS'",
+                },
+                StatusCode: "200",
+              },
+            ],
+          },
+        },
+      },
     },
   },
 };
