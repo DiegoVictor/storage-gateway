@@ -177,6 +177,16 @@ const serverlessConfiguration: AWS = {
           },
         },
       },
+      StorageGatewayApiDeployment: {
+        Type: "AWS::ApiGateway::Deployment",
+        DependsOn: ["StorageGatewayApiObjectProxyMethod"],
+        Properties: {
+          StageName: "${opt:stage}",
+          RestApiId: {
+            Ref: "StorageGatewayApi",
+          },
+        },
+      },
     },
   },
 };
