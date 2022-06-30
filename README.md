@@ -16,3 +16,51 @@ This project creates a Api Gateway Rest Api that servers as a proxy for S3, allo
     * [Binary Mime Types](#binary-mime-types)
 * [Usage](#usage)
   * [Routes](#routes)
+
+# Requirements
+* Node.js ^14.15.0
+* AWS Account 
+  * [API Gateway](https://aws.amazon.com/api-gateway/)
+  * [S3](https://aws.amazon.com/s3/)
+
+# Installing
+Easy peasy lemon squeezy:
+```
+$ yarn
+```
+Or:
+```
+$ npm install
+```
+
+## Configure
+If you need change the bucket name for any reason remember to update the `custom.bucketName` in the `serverless.ts` file.
+
+### Binary Mime Types
+If necessary more binary types add it in the `StorageGatewayApi.Properties.BinaryMediaTypes` array in the `serverless.ts`.
+
+# Usage
+Deploy the project running the following command:
+```
+$ sls deploy --stage dev
+```
+Now run the `scripts/main.js` script to upload some sample files:
+```
+$ node scripts/main.js
+```
+Then [get the application Rest API URL](https://docs.aws.amazon.com/pt_br/apigateway/latest/developerguide/how-to-call-api.html#apigateway-how-to-call-rest-api).
+
+## Routes
+|route|HTTP Method
+|:---|:---:
+|`/images/blown.gif`|GET
+|`/images/programming.jpg`|GET
+|`/images/works.png`|GET
+
+Below you can see the path structure:
+```
+/{folder}/{filename}
+```
+* `/images` is the name of the folder where the samples were uploaded.
+* The second part (`/blown.gif`, `/programming.jpg` and `/works.png`) is the name of the files.
+
