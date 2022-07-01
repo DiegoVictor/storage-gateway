@@ -16,6 +16,7 @@ This project creates a Api Gateway Rest Api that servers as a proxy for S3, allo
     * [Binary Mime Types](#binary-mime-types)
 * [Usage](#usage)
   * [Routes](#routes)
+* [References](#references)
 
 # Requirements
 * Node.js ^14.15.0
@@ -64,3 +65,7 @@ Below you can see the path structure:
 * `/images` is the name of the folder where the samples were uploaded.
 * The second part (`/blown.gif`, `/programming.jpg` and `/works.png`) is the name of the files.
 
+# References
+* [Tutorial: Create a REST API as an Amazon S3 proxy in API Gateway
+PDF
+RSS](https://docs.aws.amazon.com/apigateway/latest/developerguide/integrating-api-with-aws-services-s3.html)
