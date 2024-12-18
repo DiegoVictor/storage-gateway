@@ -1,0 +1,117 @@
+{
+	"info": {
+		"_postman_id": "f67769e2-c2ae-4c30-8b1f-3a125897c64a",
+		"name": "Storage Gateway",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4346128"
+	},
+	"item": [
+		{
+			"name": "blown.gif",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": []
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "image/"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/images/blown.gif",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"images",
+						"blown.gif"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "programming.jpg",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": []
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/images/programming.jpg",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"images",
+						"programming.jpg"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "works.png",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": []
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true,
+				"disableUrlEncoding": false,
+				"disableCookies": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/images/works.png",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"images",
+						"works.png"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "https://ivlfolw71h.execute-api.us-east-1.amazonaws.com/dev"
+		}
+	]
+}
